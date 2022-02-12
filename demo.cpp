@@ -1,9 +1,3 @@
-// Life is a pain //
-// Then why to live??? Die........... //
-// Why to Die?? To save water //
-// Why to save Water?? to drink water //
-// Why to drink water?? to quench thirst //
-
 
 #include <iostream>
 #include <stdlib.h>
@@ -18,51 +12,49 @@ int main(int argc,char *argv[]){
     char *readStream = new char[1];
     int bytes_read=0;
     
-    string config = "./";
+    // string config = "./";
     
-    if(argc>1){
-        config = argv[1];
-    }
+    // if(argc>1){
+    //     config = argv[1];
+    // }
     // Displaying 
 
     int readFD[3];
-
-    // const char *paths[3] = {config + "X.txt",config + "Y.txt",config + "Z.txt"};
-    // paths[0] = config + "X.txt";
-    // paths[1] = config + "Y.txt";
-    // paths[2] = config + "Z.txt";
 
     readFD[0] =  open("./Files/X.txt",O_RDONLY);
     readFD[1] =  open("./Files/Y.txt",O_RDONLY);
     readFD[2] =  open("./Files/Z.txt",O_RDONLY);
 
         // 3 File Des -> Rd Permissions
+        // Code Size Can be reduced with a loop
     if(readFD[0]>-1){
         bytes_read = read(readFD[0],readStream,sizeof(char));
         if(bytes_read){
             cout<<readStream<< " ";
         }
-        else{
-            cout<<"_ ";
-        }
     }
+    else{
+        cout<<"_ ";
+    }
+
     if(readFD[1]>-1){
         bytes_read = read(readFD[1],readStream,sizeof(char));
         if(bytes_read){
             cout<<readStream<< " ";
         }
-        else{
-            cout<<"_ ";
-        }
     }
+    else{
+        cout<<"_ ";
+    }
+    
     if(readFD[2]>-1){
         bytes_read = read(readFD[2],readStream,sizeof(char));
         if(bytes_read){
             cout<<readStream<< " ";
         }
-        else{
-            cout<<"_ ";
-        }
+    }
+    else{
+        cout<<"_ ";
     }
     
     cout << endl << "-----------------------------------------------"<<endl;
@@ -107,7 +99,7 @@ int main(int argc,char *argv[]){
     
         int option;
         
-        cin>> option;
+        cin>> option; 
         cin.ignore();  
         if(option!=4){
             cout<<"Enter Value To Replace in the file: ";
