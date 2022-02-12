@@ -1,5 +1,9 @@
 // Life is a pain //
 // Then why to live??? Die........... //
+// Why to Die?? To save water //
+// Why to save Water?? to drink water //
+// Why to drink water?? to quench thirst //
+
 
 #include <iostream>
 #include <stdlib.h>
@@ -11,10 +15,10 @@
 using namespace std;
 
 int main(int argc,char *argv[]){
-    char readStream;
+    char *readStream = new char[1];
     int bytes_read=0;
     
-    string config = "./"
+    string config = "./";
     
     if(argc>1){
         config = argv[1];
@@ -23,9 +27,14 @@ int main(int argc,char *argv[]){
 
     int readFD[3];
 
-    readFD[0] =  open(config + "X.txt",O_RDONLY);
-    readFD[1] =  open(config + "Y.txt",O_RDONLY);
-    readFD[2] =  open(config + "Z.txt",O_RDONLY);
+    // const char *paths[3] = {config + "X.txt",config + "Y.txt",config + "Z.txt"};
+    // paths[0] = config + "X.txt";
+    // paths[1] = config + "Y.txt";
+    // paths[2] = config + "Z.txt";
+
+    readFD[0] =  open("./Files/X.txt",O_RDONLY);
+    readFD[1] =  open("./Files/Y.txt",O_RDONLY);
+    readFD[2] =  open("./Files/Z.txt",O_RDONLY);
 
         // 3 File Des -> Rd Permissions
     if(readFD[0]>-1){
@@ -65,12 +74,12 @@ int main(int argc,char *argv[]){
     //  Special User with admin Rights..!
 
     int writeFD[3];
-    char writeStream;
+    char *writeStream=new char[1];
 
 
-    writeFD[0] =  open(config + "X.txt",O_WRONLY);
-    writeFD[1] =  open(config + "Y.txt",O_WRONLY);
-    writeFD[2] =  open(config + "Z.txt",O_WRONLY);
+    writeFD[0] =  open("./Files/X.txt",O_WRONLY);
+    writeFD[1] =  open("./Files/Y.txt",O_WRONLY);
+    writeFD[2] =  open("./Files/Z.txt",O_WRONLY);
 
     bool access= (writeFD[0]>-1 || writeFD[1]>-1 || writeFD[2]>-1);
         // 3 File Des -> Rd Permissions
@@ -99,24 +108,32 @@ int main(int argc,char *argv[]){
         int option;
         
         cin>> option;
-                
-        cout<<"Enter Value To Replace in the file: ";
+        cin.ignore();  
+        if(option!=4){
+            cout<<"Enter Value To Replace in the file: ";
+        }          
         switch(option){
             case 1: 
                 cin>>writeStream;  
-                bytes_write = write(writeFD[0],writeStream,sizeof(char));
+                cout<<writeStream<<endl;
+                lseek(writeFD[0],0,SEEK_SET);
+                write(writeFD[0],writeStream,sizeof(char));
                 break;
             case 2:
                 cin>>writeStream;  
-                bytes_write = write(writeFD[1],writeStream,sizeof(char));
+                cout<<writeStream<<endl;
+                lseek(writeFD[1],0,SEEK_SET);
+                write(writeFD[1],writeStream,sizeof(char));
                 break;
             case 3:
                 cin>>writeStream;  
-                bytes_write = write(writeFD[2],writeStream,sizeof(char));
+                cout<<writeStream<<endl;
+                lseek(writeFD[2],0,SEEK_SET);
+                write(writeFD[2],writeStream,sizeof(char));
                 break;
             case 4:
                 inProgram = false;
-                break
+                break;
             default:
                 cout<<"Please Enter A Valid Option"<<endl;
         }    
