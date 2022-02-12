@@ -137,6 +137,7 @@ int main(int argc,char *argv[]){
             default:
                 cout<<"Please Enter A Valid Option"<<endl;
         }    
+        cout<<endl;
     }
     
     close(writeFD[0]);
