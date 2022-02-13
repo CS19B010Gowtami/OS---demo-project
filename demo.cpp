@@ -89,6 +89,9 @@ int main(int argc,char *argv[])
             cout<<endl;
         }
         else{
+            close(writeFD[0]);
+            close(writeFD[1]);
+            close(writeFD[2]);
             break;
         }
         close(writeFD[0]);
