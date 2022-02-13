@@ -62,7 +62,7 @@ int main(int argc,char *argv[])
             for(int i=0;i<3;i++)
             {
                 if(writeFD[i]>-1)
-                    cout<< "Enter "<<i+1<< "to Change Value of file "<<i+1<<endl;
+                    cout<< "Enter "<<i+1<< " to Change Value of file "<<i+1<<endl;
             }
             cout<<"Enter 4 to Exit The Program"<<endl;
             cout << endl;
